@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user">
+
+	<select id="getUserById" parameterType="int" resultType="pojo.User">
+		select
+		`id`,
+		`username`,
+		`birthday`,
+		`sex`,
+		`address`
+		from `user`
+		where id = #{id2}
+	</select>
+	<select id="getUserByUserName" parameterType="string" resultType="pojo.User">
+		select
+		`id`,
+		`username`,
+		`birthday`,
+		`sex`,
+		`address`
+		from `user`
+		where username like '%${value}%'
+	</select>
+	<select id="insertUser" parameterType="pojo.User">
+		insert into `user`
+		(`username`,
+		`birthday`,
+		`sex`,
+		`address`
+		)
+		values(
+		#{username},
+		#{birthday},
+		#{sex},
+		#{address}
+		
+		)
+	</select>
+	
+	<update id="updateUser" parameterType="pojo.User">
+		update `user`
+		set `username` = #{username}
+		where `id` = #{id}
+	</update>
+	
+	<delete id="deleteUser" parameterType="int">
+		delete 
+		from `user`
+		where `id` = #{id}
+	
+	</delete>
+</mapper>
